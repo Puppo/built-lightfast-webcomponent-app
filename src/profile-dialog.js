@@ -1,20 +1,37 @@
-import { TemplateRender } from './template-render.js'
-import { sharedStyle } from './sharedStyle.js'
+import { TemplateRender } from "./template-render.js";
+import { sharedStyle } from "./sharedStyle.js";
 
 export class ProfileDialog extends TemplateRender {
-    open(data) {
-        this.profileData = data;
-        this.render();
-        this.shadowRoot.querySelector('dialog').showModal()
-        this.shadowRoot.addEventListener('click', () => this.close())
-    }
+  constructor() {
+    super();
 
-    close() {
-        this.shadowRoot.querySelector('dialog').close()
-    }
+    this.profileData = {};
+  }
 
-    get template() {
-        return `
+  open(data) {
+    this.profileData = data || {};
+    this.opened = true;
+    this.render();
+    this.shadowRoot.querySelector("dialog").showModal();
+    this.shadowRoot.addEventListener("click", () => this.close());
+  }
+
+  close() {
+    this.opened = false;
+    this.shadowRoot.querySelector("dialog").close();
+  }
+
+  set opened(val) {
+    if (val) this.setAttribute("opened", "");
+    else this.removeAttribute("opened");
+  }
+
+  get opened() {
+    return this.hasAttribute("opened");
+  }
+
+  get template() {
+    return `
         <style>
             dialog::backdrop {
                 background: rgba(0, 0, 0, 0.8)
@@ -47,7 +64,9 @@ export class ProfileDialog extends TemplateRender {
             ${sharedStyle.card}
         </style>
         <dialog>
-            ${this.profileData ? `
+            ${
+              Object.entries(this.profileData).length > 0
+                ? `
             <img src=${this.profileData.picture.thumbnail} />
             <h1>${this.profileData.name.first} ${this.profileData.name.last}</h1>
 
@@ -63,10 +82,12 @@ export class ProfileDialog extends TemplateRender {
                     <p>${this.profileData.phone}</p>
                 </div>
             </section>
-            ` : ``}
+            <p>Proin finibus lectus vitae accumsan lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas volutpat aliquet sapien sit amet faucibus. Donec id velit sit amet felis pharetra tincidunt. Proin vitae nibh a massa commodo blandit. Sed quam lorem, molestie ac nisi in, blandit interdum tortor. Nunc interdum id quam nec vestibulum.</p>
+            `
+                : ""
+            }
 
-                <p>Proin finibus lectus vitae accumsan lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas volutpat aliquet sapien sit amet faucibus. Donec id velit sit amet felis pharetra tincidunt. Proin vitae nibh a massa commodo blandit. Sed quam lorem, molestie ac nisi in, blandit interdum tortor. Nunc interdum id quam nec vestibulum.</p>
         </dialog>
-        `
-    }
+        `;
+  }
 }

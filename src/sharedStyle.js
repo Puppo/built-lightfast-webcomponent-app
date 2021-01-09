@@ -1,11 +1,11 @@
-const sharedStyle = {}
+const sharedStyle = {};
 
 sharedStyle.trbl = `
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-`
+`;
 
 sharedStyle.card = `
     img {
@@ -22,6 +22,6 @@ sharedStyle.card = `
         font-size: 1.4em;
         color: var(--primary);
     }
-`
+`;
 
-export { sharedStyle }
+export { sharedStyle };
