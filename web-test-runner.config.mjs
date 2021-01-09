@@ -26,4 +26,15 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
   // ],
 
   // See documentation for all available options
+
+  coverageConfig: {
+    report: true,
+    reportDir: 'coverage',
+    threshold: {
+      statements: 80,
+      branches: 80,
+      functions: 80,
+      lines: 80,
+    },
+  },
 });
