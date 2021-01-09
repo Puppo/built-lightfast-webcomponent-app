@@ -1,4 +1,4 @@
-[![Webcomponent-App Actions Status](https://github.com/Puppo/built-lightfast-webcomponent-app/workflows/{webcomponent-app}/badge.svg)](https://github.com/Puppo/built-lightfast-webcomponent-app/actions)
+[![Webcomponent-App Actions Status](https://github.com/Puppo/built-lightfast-webcomponent-app/workflows/webcomponent-app/badge.svg)](https://github.com/Puppo/built-lightfast-webcomponent-app/actions)
 
 # Webcomponent App
 
